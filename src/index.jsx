@@ -1,11 +1,18 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
+import './scss/style.scss'
+import { MoviesContext } from './context/moviesContext';
 import reportWebVitals from './reportWebVitals';
+import { ReviewsContext } from './context/reviewsContext';
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <MoviesContext>
+      <ReviewsContext>
+        <App />
+      </ReviewsContext>
+    </MoviesContext>
   </React.StrictMode>,
   document.getElementById('root')
 );

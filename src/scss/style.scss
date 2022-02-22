@@ -1,5 +1,6 @@
 $primary-color: #1D2123;
 $secondary-color: white;
+$text-color: #919191;
 
 *{
   margin: 0;
@@ -21,7 +22,7 @@ li{
 
 body{
   background-color: $primary-color ;
-  color: $secondary-color;
+  color: $text-color;
 }
 
 .wrapper{
@@ -67,28 +68,50 @@ body{
 }
 
 .card{
+  box-shadow: 1px 0 4px $secondary-color;
   position: relative;
-  width: 95%;
-  margin-top: 1rem;
-  height: 300px;
-  background-color: black;
+  flex-wrap: wrap;
+  width: 90%;
+  margin-top: 1.5rem;
+  border-radius: 15px;
 
   .card__img{
-    position: absolute;
     width: 100%;
-    height: 100%;
-    top: 0;
-    z-index: 0;
+    height: 300px;
+    border-radius: 15px 15px 0 0;
   }
   
-  .card__stars{
-    position: relative;
-    z-index: 1;
-  }
-  
+    .card__content{
+      position: relative;
+      width: 100%;
+      height: 100px;
+      padding: 0 10px 12px 10px;
+    }
+    
+    .card__stars{
+      position: relative;
+      top: -20%;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 0 3px $secondary-color;
+      background-color: transparent;
+      color: $secondary-color;
+      border-radius: 50%;
+      width: 35px;
+      height: 35px;
+    }
+    
+    .card__title{
+      position: relative;
+      top: -20%;
+      margin-top: 5px;
+      width: 100%;
+    }
+}
+
+.card:hover{
   .card__title{
-    position: relative;
-    z-index: 1;
+    color: $text-color;
   }
 }
 
@@ -99,17 +122,40 @@ body{
   height: 600px;
   overflow: hidden;
   position: relative;
-  z-index: 0;
   .banner__img{
-    position: absolute;
-    left: -100%;
-    right: -100%;
-    top: 0;
-    bottom: -100%;
-    margin: auto;
-    min-height: 100%;
-    min-width: 100%;
+    width: 100%;
   }
 }
 
+.reviews{
+  margin-top: 40px;
+  .reviews__title{
+    align-items: center;
+    justify-content: center;
+    background-color: $text-color;
+    color: $primary-color;
+    border-radius: 10px;
+    box-shadow: 0 0 2px 1px $secondary-color;
+    height: 50px;
+  }
+}
+
+.form__select{
+
+  .form__option{
+    cursor: pointer;
+    box-shadow: 0 0 1px $secondary-color;
+    border-radius: 50%;
+    width: 15px;
+    height: 15px;
+  }
+
+  .form__option:not(:last-child){
+    margin-right: 10px;
+  }
+}
+
+.form__option:hover{
+  background-color: $text-color;
+}
 
