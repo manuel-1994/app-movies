@@ -3,7 +3,7 @@ import MoviesComponent from '../components/MoviesComponent'
 import { movieContext } from '../context/moviesContext'
 
 const Movies = () => {
-   const {movies, setMovies} =useContext(movieContext)
+   const {movies} =useContext(movieContext)
 
   return (
     <MoviesComponent movies={movies}/>

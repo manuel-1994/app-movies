@@ -4,33 +4,26 @@ import { movieContext } from '../context/moviesContext'
 import { reviewContext } from '../context/reviewsContext'
 
 function Details() {
-  const {movies} = useContext(movieContext)
-  const {reviews,setReviews} = useContext(reviewContext)
+  const {movies, addStars, delStars} = useContext(movieContext)
+  const {reviews, dispatchReviews} = useContext(reviewContext)
   const  {id} = useParams()
   const movie = movies.filter(movie=>movie.id===id)[0]
-  const review = reviews.filter(review=>review.movieId===id)
 
   const addReview= (event)=>{
     event.preventDefault()
-    setReviews([...reviews, {
-      review: event.target[0].value,
-      point: event.target[1].value,
-      movieId: movie.id,
-      id: review.length
-    }])
-    movie.stars += parseInt(event.target[1].value)
+    const stars = event.target[1].value
+    const review = event.target[0].value
+    dispatchReviews({type: "addReview", payload: {movie,stars,review}})
+    addStars(movie,stars)
   }
 
-  const subHanddle= (reviewId)=>{
-    const newReview = reviews.filter(review=> {
-      if(review.id=== reviewId && review.movieId===id){
-        movie.stars -= parseInt(review.point)
-      }
-      return (review.movieId!==id) || (review.movieId===id && review.id!==reviewId)
-    })
-
-    setReviews(newReview)
+  const handdleSub= (reviewId)=>{
+    const newReviews = reviews.filter(review=> review.id!==reviewId)
+    const reviewDeleted = reviews.filter(review=> review.id===reviewId)
+    dispatchReviews({type: 'delReview', payload: newReviews })
+    delStars(movie,reviewDeleted[0].stars)
   }
+
   return (
     <>
       <div className='banner' >
@@ -62,7 +55,7 @@ function Details() {
               {reviews.map((review, index)=> review.movieId===id&&<div key={index}>
                 <p>{review.review}</p>
                 <button>editar</button>
-                <button onClick={()=>subHanddle(review.id)}>borrar</button>
+                <button onClick={()=>handdleSub(review.id)}>borrar</button>
               </div>)}
             </div>
         </section>

@@ -1,13 +1,13 @@
-import React, { createContext, useState } from 'react'
+import React, { createContext, useReducer } from 'react'
+import { reviewsInitialState, reviewsReducer } from '../reducer/reviewsReducer'
 
 const reviewContext = createContext()
 
 const ReviewsContext = ({children}) => {
+  const [reviews, dispatchReviews] = useReducer(reviewsReducer, reviewsInitialState)
 
-  const[reviews, setReviews] =useState([])
-  
   return (
-    <reviewContext.Provider value={{reviews, setReviews}}>
+    <reviewContext.Provider value={{reviews, dispatchReviews}}>
       {children}
     </reviewContext.Provider>
   )
