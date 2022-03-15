@@ -1,5 +1,5 @@
-$primary-color: #1D2123;
-$secondary-color: white;
+$primary-color: #1d2123;
+$secondary-color: #ffffff;
 $text-color: #919191;
 
 *{
@@ -10,6 +10,10 @@ $text-color: #919191;
 
 h1,h2,h3,h4,h5,h5,a{
   color: $secondary-color;
+}
+
+h1{
+  font-size: 2rem
 }
 
 a{
@@ -23,6 +27,14 @@ li{
 body{
   background-color: $primary-color ;
   color: $text-color;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 50vh;
+}
+
+.text-margin{
+  margin-top: 10px;
 }
 
 .wrapper{
@@ -42,9 +54,11 @@ body{
   z-index: 1;
 }
 
-.header ~ .movies{
-  margin-top: 130px;
+.header.active{
+  background-color: rgba(29, 33, 35, .8) ;
 }
+
+
 
 .nav{
   justify-content: space-between;
@@ -63,15 +77,21 @@ body{
 /* cards movies */
 
 .movies{
-  display: grid;
-  grid-template-columns: repeat(5, 1fr);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  margin-top: 130px;
+  width: 100%;
 }
 
 .card{
-  box-shadow: 1px 0 4px $secondary-color;
   position: relative;
   flex-wrap: wrap;
-  width: 90%;
+  box-shadow: 1px 0 4px $secondary-color;
+  width: 230px;
+  height: 380px;
+  margin: 0 11px;
   margin-top: 1.5rem;
   border-radius: 15px;
 
@@ -90,12 +110,12 @@ body{
     
     .card__stars{
       position: relative;
-      top: -20%;
       align-items: center;
       justify-content: center;
-      box-shadow: 0 0 3px $secondary-color;
       background-color: transparent;
       color: $secondary-color;
+      box-shadow: 0 0 3px $secondary-color;
+      top: -20%;
       border-radius: 50%;
       width: 35px;
       height: 35px;
@@ -110,52 +130,122 @@ body{
 }
 
 .card:hover{
-  .card__title{
-    color: $text-color;
-  }
+  width: 250px;
+    .card__title{
+      color: $text-color;
+    }
 }
 
 /* details page */
 
 .banner{
   width: 100%;
-  height: 600px;
+  max-height: 600px;
   overflow: hidden;
   position: relative;
-  .banner__img{
-    width: 100%;
-  }
+    .banner__img{
+      width: 100%;
+    }
+}
+
+.details{
+    .details__box{
+      font-size: 1.3rem;
+    }
 }
 
 .reviews{
-  margin-top: 40px;
-  .reviews__title{
-    align-items: center;
-    justify-content: center;
-    background-color: $text-color;
-    color: $primary-color;
-    border-radius: 10px;
-    box-shadow: 0 0 2px 1px $secondary-color;
-    height: 50px;
-  }
+  flex-direction: column;
+  align-items: center;
+  margin: 40px 0;
+    
+    .reviews__title{
+      align-items: center;
+      justify-content: center;
+      background-color: $text-color;
+      color: $primary-color;
+      border-radius: 10px;
+      box-shadow: 0 0 2px 1px $secondary-color;
+      width: 100%;
+      height: 50px;
+    }
+
+    .reviews__list{
+      flex-direction: column;
+      align-items: center;
+      overflow: auto;
+      background-color: $text-color;
+      width: 95%;
+      height: 400px;
+      border-radius: 10px;
+
+        .reviews__items{
+          width: 80%;
+          margin-top: 20px;
+            .reviews__avatar{
+              width: 60px;
+              height: 60px;
+              background-color: black;
+              margin-right: 10px;
+
+                .reviews__img{
+                  width: 100%;
+                  height: 100%;
+                }
+            }
+          
+            .reviews_box{
+              background-color: white;
+              width: 100%;
+    
+                .reviews__head{
+                    border-bottom: 1px solid $primary-color;
+                }
+            }
+          
+            .reviews__content{
+              width: 90%;
+              background-color: white;
+            }
+        }
+        
+    }
 }
 
-.form__select{
 
-  .form__option{
-    cursor: pointer;
-    box-shadow: 0 0 1px $secondary-color;
-    border-radius: 50%;
-    width: 15px;
-    height: 15px;
-  }
-
-  .form__option:not(:last-child){
-    margin-right: 10px;
-  }
+.form-reviews{
+  margin: 20px 0;
 }
 
-.form__option:hover{
-  background-color: $text-color;
+/* Stars styles */
+.stars{
+  direction: rtl;
+  unicode-bidi: bidi-override;
+  .stars__input{
+    display: none;
+  }
+  .stars__label{
+    color: #444;
+    font-size: 20px;
+    padding: 10px;
+    //float: right;
+    //transition: all 0.2s ease;
+  }
+
+      input:not(:checked) ~ label:hover,
+      input:not(:checked) ~ label:hover ~ label{
+      color: #fd4;
+    }
+
+    .stars__input:checked ~ .stars__label{
+      color: #fd4;
+    }
+
+    .stars__input#rate-5:checked ~ .stars__label{
+      color: #fe7;
+      filter:drop-shadow(0 0 5px red);
+    }
 }
+
+
 

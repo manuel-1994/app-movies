@@ -1,20 +1,20 @@
 import { Route,BrowserRouter,Routes } from "react-router-dom";
-import Auth from "./pages/Auth";
-import Details from "./pages/Details";
+import AuthPage from "./pages/AuthPage";
+import DetailsPage from "./pages/DetailsPage";
 import Layout from "./pages/Layout";
-import Movies from "./pages/Movies";
-import NotFound from "./pages/NotFound";
+import MoviesPage from "./pages/MoviesPage";
+import NotFoundPage from "./pages/NotFoundPage";
 
 function App() {
   return (
     <BrowserRouter>
       <Routes>
         <Route path='/' element={<Layout/>}>
-            <Route path="*" element={<NotFound/>}/>  
-            <Route path="movies" element={<Movies/>}/> 
-            <Route path="movie/:id" element={<Details/>}/>
+            <Route path="*" element={<NotFoundPage/>}/>  
+            <Route path="movies" element={<MoviesPage/>}/> 
+            <Route path="movie/:id" element={<DetailsPage/>}/>
         </Route>
-        <Route path="auth" element={<Auth/>}/>
+        <Route path="auth" element={<AuthPage/>}/>
       </Routes>
     </BrowserRouter>
   );

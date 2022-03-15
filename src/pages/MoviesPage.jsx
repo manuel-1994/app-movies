@@ -2,7 +2,7 @@ import React, { useContext } from 'react'
 import MoviesComponent from '../components/MoviesComponent'
 import { movieContext } from '../context/moviesContext'
 
-const Movies = () => {
+const MoviesPage = () => {
    const {movies} =useContext(movieContext)
 
   return (
@@ -10,4 +10,4 @@ const Movies = () => {
   )
 }
 
-export default Movies
+export default MoviesPage

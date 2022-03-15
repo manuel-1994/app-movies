@@ -1,9 +1,16 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 
 const HeaderComponent = () => {
+  const [navbar, setNavbar] = useState(false)
+
+  const changeBackground = () =>{
+    (window.scrollY>=50)?setNavbar(true):setNavbar(false)
+  }
+  window.addEventListener('scroll', changeBackground)
+
   return (
-      <header className='header wrapper'>
+      <header className={navbar?'header active': 'header'}>
         <nav className='nav flex'>
 
           <ul className='nav__list'>
